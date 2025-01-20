@@ -1,41 +1,64 @@
 const scoreSpan = document.getElementById('score');
-const guessWordDiv = document.getElementById('word');
-const alphabetDiv = document.getElementById('alphabet')
+const guessedWordDiv = document.getElementById('word');
+const alphabetDiv = document.getElementById('alphabet');
 
-const alphabet = 'abdefghijklmnopršzžtuvõäöü';
+const alphabet = 'abdefghijklmnoprsšzžtuvõäöü';
 let guessedLetters = [];
-
-for ( letter of alphabet ) {
-    const letterSpan = document.createElement('span', {'id' : letter});
-    letterSpan.innerText = letter.toUpperCase();
-
-    letterSpan.addEventListener('click', e => {
-
-        if ( !guessedLetters.includes(letter) ) {
-
-            guessedLetters.push(letter);
-            console.log(letter);
-        }
-        
-    });
-
-    alphabetDiv.appendChild(letterSpan);
-}
 
 let score = 10;
 scoreSpan.innerText = score;
 
-let word = 'Kuressaare Ametikool!'
-let guessWord = '';
+let word = 'Kuressaare Ametikool!';
+let guessedWord = [];
 
-for (char of word ) {
-    if ( char.topUpperCase() != char.toLowerCase() ) {
-        guessWord += '_';
+for ( let char of word ) {
+    if ( char.toUpperCase() != char.toLowerCase() ) {
+        guessedWord.push ('_');
     } else {
-        guessWord += char;
+        guessedWord.push (char);
     }
 }
 
-guessWordDiv.innerText = guessWord;
+guessedWordDiv.innerText = guessedWord.join('');
 
-  
+for ( let letter of alphabet ) {
+    const letterSpan = document.createElement('span', {'id': letter});
+    letterSpan.innerText = letter.toUpperCase();
+
+    if ( score && guessedWord.includes('click') ) {}
+
+    letterSpan.addEventListener('click', e => {
+        
+        if ( !guessedLetters.includes(letter) ) {
+            
+            guessedLetters.push(letter);
+
+        if (word.toLowerCase().includes(letter) ) {
+
+            for ( let i = 0; word.toLowerCase().indexOf(letter, i) != -1; i++ ) {
+                i = word.toLowerCase().indexOf(letter, i);
+                guessedWord[i];
+            }
+
+            guessedWordDiv.innerText = guessedWord.join('');
+
+            letterSpan.classList.add('correct');
+            
+        } else {
+           
+            score--;
+            scoreSpan.innerText = score;
+
+            letterSpan.classList.add('incorrect');
+
+        }
+
+    }
+
+    });
+
+}else if( !score ) {
+
+    alphabetDiv.appendChild(letterSpan);
+}{
+

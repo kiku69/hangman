@@ -5,19 +5,19 @@
     align-items: center;
 }
 
-#score-container{
+#score-container {
     margin-top: 2rem;
-    font-size: 2rem;
-    font-family: sans-serif;
     margin-left: 4rem;
+    font-family: sans-serif;
+    font-size: 2rem;
     align-self: start;
 }
 
 #word {
-    margin-top: 3rem 0;
+    margin: 3rem 0;
     font-family: sans-serif;
     font-size: 3rem;
-    letter-spacing: 0,5rem;
+    letter-spacing: 0.5rem;
 }
 
 #alphabet {
@@ -27,23 +27,24 @@
 }
 
 #alphabet span {
+    display: inline-block;
     font-size: 2.5rem;
     border: 1px solid black;
     width: 2.5rem;
-    display: inline-block;
     text-align: center;
     margin: 0.1rem;
-    cursor: default;
+    padding: 0.1rem;
+    cursor: pointer;
 }
 
 #alphabet span:hover {
-    background-color: aquamarine;
+    background-color: beige;
 }
 
 #alphabet span.correct {
-    color: aqua;
+    color: aquamarine;
 }
 
-#alphabet span.uncorrect {
-    color:crimson;
+#alphabet span.incorrect {
+    color: crimson;
 }
