@@ -13,9 +13,9 @@ let guessedWord = [];
 
 for ( let char of word ) {
     if ( char.toUpperCase() != char.toLowerCase() ) {
-        guessedWord.push ('_');
+        guessedWord.push('_');
     } else {
-        guessedWord.push (char);
+        guessedWord.push(char);
     }
 }
 
@@ -24,41 +24,51 @@ guessedWordDiv.innerText = guessedWord.join('');
 for ( let letter of alphabet ) {
     const letterSpan = document.createElement('span', {'id': letter});
     letterSpan.innerText = letter.toUpperCase();
-
-    if ( score && guessedWord.includes('click') ) {}
-
+    
+    
     letterSpan.addEventListener('click', e => {
         
-        if ( !guessedLetters.includes(letter) ) {
-            
-            guessedLetters.push(letter);
+        if ( score && guessedWord.includes('_') ) {
 
-        if (word.toLowerCase().includes(letter) ) {
-
-            for ( let i = 0; word.toLowerCase().indexOf(letter, i) != -1; i++ ) {
-                i = word.toLowerCase().indexOf(letter, i);
-                guessedWord[i];
+            if ( !guessedLetters.includes(letter) ) {
+                
+                guessedLetters.push(letter);
+                
+                if ( word.toLowerCase().includes(letter) ) {
+    
+                    for ( let i = 0; word.toLowerCase().indexOf(letter, i) != -1; i++ ) {
+                        i = word.toLowerCase().indexOf(letter, i);
+                        guessedWord[i] = word[i];
+                    }
+    
+                    guessedWordDiv.innerText = guessedWord.join('');
+    
+                    letterSpan.classList.add('correct');
+    
+                } else {
+    
+                    score--;
+                    scoreSpan.innerText = score;
+    
+                    letterSpan.classList.add('incorrect');
+                    
+                }
+    
             }
 
-            guessedWordDiv.innerText = guessedWord.join('');
+            if ( !score ) {
+        
+                console.log('Kaotasid, õige sõna:', word);
+                
+            } else if ( !guessedWord.includes('_') ) {
+        
+                console.log('Võitsid mängu!');
+        
+            }
 
-            letterSpan.classList.add('correct');
-            
-        } else {
-           
-            score--;
-            scoreSpan.innerText = score;
-
-            letterSpan.classList.add('incorrect');
-
-        }
-
-    }
-
-    });
-
-}else if( !score ) {
+        }     
+        
+    });    
 
     alphabetDiv.appendChild(letterSpan);
-}{
-
+}
